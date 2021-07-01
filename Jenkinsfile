@@ -27,7 +27,7 @@ pipeline{
         }
         stage('SonarQube Analysis'){
             steps{
-                scripts{
+                script{
                     def scannerHome = tool 'new-sonar';
                     withSonarQubeEnv('formacao-sq'){
                         sh "%{scannerHome}/bin/sonar-scanner"
@@ -37,7 +37,7 @@ pipeline{
         }
         stage('SonarQube Quality Gates'){
             steps{
-                scripts{
+                script{
                     def qg = waitForQualityGate();
                     if (qp.status != 'OK') {
                         error "Pipeline aborted due to quality gate failure: ${qp.status}"
