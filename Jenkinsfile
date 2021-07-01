@@ -1,4 +1,5 @@
 pipeline{
+    agent 'master' 
     stages{
         stage("Install Dependencies"){
             steps{
@@ -25,7 +26,7 @@ pipeline{
             }
         }
         stage('SonarQube Analysis'){
-            setps{
+            steps{
                 scripts{
                     def scannerHome = tool 'new-sonar';
                     withSonarQubeEnv('formacao-sq'){
@@ -35,7 +36,7 @@ pipeline{
             }
         }
         stage('SonarQube Quality Gates'){
-            setps{
+            steps{
                 scripts{
                     def qg = waitForQualityGate();
                     if (qp.status != 'OK') {
