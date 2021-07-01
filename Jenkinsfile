@@ -1,5 +1,5 @@
 pipeline{
-    agent 'master' 
+    agent 'any' 
     stages{
         stage("Install Dependencies"){
             steps{
@@ -9,7 +9,7 @@ pipeline{
         }
         stage("Build Image"){
             steps{
-                try{
+                // try{
                     script{
                         //Assemble Image Name
                         image_full_name = "image_CI"
@@ -17,12 +17,12 @@ pipeline{
                         //Build Image
                         def currentBuild = bat "docker build -t ${image_full_name} ."
                     }
-                    notifySuccessful()
-                } catch (e) {
-                    currentBuild.result="FAILED"
-                    notifyFailed()
-                    throw e
-                }
+                //     notifySuccessful()
+                // } catch (e) {
+                //     currentBuild.result="FAILED"
+                //     notifyFailed()
+                //     throw e
+                // }
             }
         }
         stage('SonarQube Analysis'){
