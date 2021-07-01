@@ -12,10 +12,11 @@ pipeline{
                 // try{
                     script{
                         //Assemble Image Name
-                        image_full_name = "image_CI"
-                         echo "Image name: ${image_full_name}"
+                        // image_full_name = "image_CI"
+                        //  echo "Image name: ${image_full_name}"
                         //Build Image
-                        def currentBuild = bat "docker build -t ${image_full_name} ."
+                        // def currentBuild = bat "docker build -t ${image_full_name} ."
+                        def currentBuild = bat "docker build -t image_CI ."
                     }
                 //     notifySuccessful()
                 // } catch (e) {
